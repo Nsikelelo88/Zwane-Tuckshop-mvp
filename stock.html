@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwane Tuckshop MVP | Stock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="stock">
+    <div class="page-shell">
+        <div class="container">
+            <header class="page-header">
+                <p class="eyebrow">Zwane Tuckshop MVP</p>
+                <h1>Stock Management</h1>
+                <p class="page-intro">Monitor current stock levels and spot products that need attention.</p>
+            </header>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">POS</a>
+                <a class="active" href="stock.html">Stock</a>
+                <a href="reports.html">Reports</a>
+                <a href="products.html">Products</a>
+            </nav>
+            
+            <section class="summary-grid" aria-label="Business summary">
+                <article class="summary-card">
+                    <span class="summary-label">Products</span>
+                    <strong id="summaryProducts">0</strong>
+                    <p>Items currently available for sale.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Low Stock</span>
+                    <strong id="summaryLowStock">0</strong>
+                    <p>Products below the alert threshold.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Today&#39;s Sales</span>
+                    <strong>R<span id="summarySales">0.00</span></strong>
+                    <p>Total sales recorded for today.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Transactions</span>
+                    <strong id="summaryTransactions">0</strong>
+                    <p>Completed sales for today.</p>
+                </article>
+            </section>
+
+            <main class="card">
+                <div class="section-heading">
+                    <h2>Current Stock</h2>
+                    <span class="status-pill">Auto-updates after each sale</span>
+                </div>
+                <div class="toolbar">
+                    <label class="search-field">
+                        <span>Search Products</span>
+                        <input type="search" id="stockSearchInput" placeholder="Search by product name">
+                    </label>
+                    <label class="checkbox-field">
+                        <input type="checkbox" id="lowStockOnlyToggle">
+                        <span>Show low stock only</span>
+                    </label>
+                </div>
+                <div class="table-wrap">
+                    <table id="stockTable">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price (R)</th>
+                                <th>Current Stock</th>
+                                <th>Alert</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <p id="stockEmptyMessage" class="empty-state" hidden>No products match the current filter.</p>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwane Tuckshop MVP | Reports</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="reports">
+    <div class="page-shell">
+        <div class="container">
+            <header class="page-header">
+                <p class="eyebrow">Zwane Tuckshop MVP</p>
+                <h1>Daily Sales Reports</h1>
+                <p class="page-intro">Review today’s sales activity and track the total amount sold.</p>
+            </header>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">POS</a>
+                <a href="stock.html">Stock</a>
+                <a class="active" href="reports.html">Reports</a>
+                <a href="products.html">Products</a>
+            </nav>
+            
+            <section class="summary-grid" aria-label="Business summary">
+                <article class="summary-card">
+                    <span class="summary-label">Products</span>
+                    <strong id="summaryProducts">0</strong>
+                    <p>Items currently available for sale.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Low Stock</span>
+                    <strong id="summaryLowStock">0</strong>
+                    <p>Products below the alert threshold.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Today&#39;s Sales</span>
+                    <strong>R<span id="summarySales">0.00</span></strong>
+                    <p>Total sales recorded for today.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Transactions</span>
+                    <strong id="summaryTransactions">0</strong>
+                    <p>Completed sales for today.</p>
+                </article>
+            </section>
+
+            <main class="grid-layout reports-layout">
+                <section class="card">
+                    <h2>Report Summary</h2>
+                    <p class="date-panel">Today’s Date: <strong id="todayDate"></strong></p>
+                    <div class="total-panel report-total">
+                        <span>Total Sales for the Day</span>
+                        <strong>R<span id="dailyTotal">0.00</span></strong>
+                    </div>
+                    <div class="action-row">
+                        <button id="clearReportButton" type="button">Clear Today&#39;s Report</button>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <div class="section-heading">
+                        <h2>Sales Made Today</h2>
+                        <span class="status-pill" id="salesCount">0 sales</span>
+                    </div>
+                    <div id="emptySalesMessage" class="empty-state">No sales recorded for today yet.</div>
+                    <div id="salesList" class="sales-list"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

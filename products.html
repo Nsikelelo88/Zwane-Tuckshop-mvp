@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwane Tuckshop MVP | Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="products">
+    <div class="page-shell">
+        <div class="container">
+            <header class="page-header">
+                <p class="eyebrow">Zwane Tuckshop MVP</p>
+                <h1>Product Management</h1>
+                <p class="page-intro">Add new products, review existing ones, and remove products that should no longer be sold.</p>
+            </header>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">POS</a>
+                <a href="stock.html">Stock</a>
+                <a href="reports.html">Reports</a>
+                <a class="active" href="products.html">Products</a>
+            </nav>
+            
+            <section class="summary-grid" aria-label="Business summary">
+                <article class="summary-card">
+                    <span class="summary-label">Products</span>
+                    <strong id="summaryProducts">0</strong>
+                    <p>Items currently available for sale.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Low Stock</span>
+                    <strong id="summaryLowStock">0</strong>
+                    <p>Products below the alert threshold.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Today&#39;s Sales</span>
+                    <strong>R<span id="summarySales">0.00</span></strong>
+                    <p>Total sales recorded for today.</p>
+                </article>
+                <article class="summary-card">
+                    <span class="summary-label">Transactions</span>
+                    <strong id="summaryTransactions">0</strong>
+                    <p>Completed sales for today.</p>
+                </article>
+            </section>
+
+            <main class="grid-layout products-layout">
+                <section class="card">
+                    <h2>Add New Product</h2>
+                    <form id="productForm" class="form-grid">
+                        <label>
+                            <span>Product Name</span>
+                            <input type="text" id="newProductName" placeholder="e.g. Juice Box" required>
+                        </label>
+                        <label>
+                            <span>Price (R)</span>
+                            <input type="number" id="newProductPrice" min="0.01" step="0.01" placeholder="0.00" required>
+                        </label>
+                        <label>
+                            <span>Initial Stock</span>
+                            <input type="number" id="newProductStock" min="0" step="1" placeholder="0" required>
+                        </label>
+                        <div class="action-row">
+                            <button type="submit">Add Product</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="card">
+                    <div class="section-heading">
+                        <h2>Product List</h2>
+                        <span class="status-pill" id="productCount">0 products</span>
+                    </div>
+                    <label class="search-field product-search">
+                        <span>Search Products</span>
+                        <input type="search" id="productSearchInput" placeholder="Search by product name">
+                    </label>
+                    <div class="table-wrap">
+                        <table id="productTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price (R)</th>
+                                    <th>Stock</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <p id="productEmptyMessage" class="empty-state" hidden>No products match the current search.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
