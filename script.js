@@ -6,9 +6,19 @@ const STORAGE_KEYS = {
 const DEFAULT_PRODUCTS = [
     { id: 1, name: 'Simba Chips', price: 8.0, stock: 50 },
     { id: 2, name: 'Coca-Cola 500ml', price: 12.0, stock: 30 },
-    { id: 3, name: 'Rose Milk', price: 7.0, stock: 20 },
-    { id: 4, name: 'Bread Roll', price: 5.0, stock: 40 }
+    { id: 3, name: 'Milk', price: 7.0, stock: 20 },
+    { id: 4, name: 'Bread', price: 5.0, stock: 40 },
+    { id: 5, name: 'Fanta Orange 500ml', price: 12.0, stock: 25 },
+    { id: 6, name: 'Nik Naks', price: 6.0, stock: 35 },
+    { id: 7, name: 'Chocolate Bar', price: 10.0, stock: 30 },
+    { id: 8, name: 'Bottled Water 500ml', price: 10.0, stock: 40 },
+    { id: 9, name: 'Airtime Voucher', price: 5.0, stock: 60 }
 ];
+
+const PRODUCT_NAME_MIGRATIONS = {
+    'Rose Milk': 'Milk',
+    'Bread Roll': 'Bread'
+};
 
 let products = [];
 let sales = [];
@@ -32,9 +42,40 @@ function syncCartWithProducts() {
     cart = cart.filter((item) => products.some((product) => product.id === item.productId));
 }
 
+function mergeDefaultProducts(storedProducts) {
+    const normalizedProducts = storedProducts.map((product) => ({
+        ...product,
+        name: PRODUCT_NAME_MIGRATIONS[product.name] || product.name
+    }));
+
+    const existingNames = new Set(normalizedProducts.map((product) => product.name.toLowerCase()));
+    const nextProducts = [...normalizedProducts];
+
+    DEFAULT_PRODUCTS.forEach((defaultProduct) => {
+        if (!existingNames.has(defaultProduct.name.toLowerCase())) {
+            nextProducts.push({ ...defaultProduct });
+        }
+    });
+
+    return nextProducts.sort((left, right) => left.id - right.id);
+}
+
+function migrateSalesItems(storedSales) {
+    return storedSales.map((sale) => ({
+        ...sale,
+        items: sale.items.map((item) => ({
+            ...item,
+            name: PRODUCT_NAME_MIGRATIONS[item.name] || item.name
+        }))
+    }));
+}
+
 function loadData() {
-    products = parseStoredJSON(STORAGE_KEYS.products, DEFAULT_PRODUCTS.map((product) => ({ ...product })));
-    sales = parseStoredJSON(STORAGE_KEYS.sales, []);
+    const storedProducts = parseStoredJSON(STORAGE_KEYS.products, DEFAULT_PRODUCTS.map((product) => ({ ...product })));
+    const storedSales = parseStoredJSON(STORAGE_KEYS.sales, []);
+
+    products = mergeDefaultProducts(storedProducts);
+    sales = migrateSalesItems(storedSales);
     syncCartWithProducts();
     saveData();
 }

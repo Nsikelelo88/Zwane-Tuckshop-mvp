@@ -100,8 +100,13 @@ The application loads the following products on first use:
 
 - Simba Chips, R8.00, stock 50
 - Coca-Cola 500ml, R12.00, stock 30
-- Rose Milk, R7.00, stock 20
-- Bread Roll, R5.00, stock 40
+- Milk, R7.00, stock 20
+- Bread, R5.00, stock 40
+- Fanta Orange 500ml, R12.00, stock 25
+- Nik Naks, R6.00, stock 35
+- Chocolate Bar, R10.00, stock 30
+- Bottled Water 500ml, R10.00, stock 40
+- Airtime Voucher, R5.00, stock 60
 
 ## Data Persistence
 
